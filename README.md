@@ -8,7 +8,7 @@ This is the implementation of a simple heuristic for the Travelling Salesman Pro
 
 ## Authors
 
-* **Arun Arjunakani** - [PurpleBooth](https://github.com/arunarjunakani)
+* **Arun Arjunakani** - [arunarjunakani](https://github.com/arunarjunakani)
 
 ## Acknowledgments
 
