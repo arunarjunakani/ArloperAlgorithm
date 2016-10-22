@@ -1,5 +1,9 @@
 /**
- * Created by arun on 10/22/16.
+ * This is where the GUI for the graphs.
+ *
+ * @author Arun Arjunakani
+ *
+ * @version 22 October, 2016
  */
 
 import javafx.application.Application;
