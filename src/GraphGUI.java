@@ -16,8 +16,8 @@ public class GraphGUI extends Application
 {
     /**
      * This is the main method which runs the entire program.
-     * @param args
-     * @return Nothing.
+     * @param String[]
+     * @return null
      */
     public static void main(String[] args)
     {
@@ -27,8 +27,8 @@ public class GraphGUI extends Application
     /**
      * This is the method that sets up all of the GUI. This is required in all classes that implement
      * the JavaFX Application class.
-     * @param primaryStage
-     * @return Nothing.
+     * @param Stage
+     * @return null
      */
     @Override
     public void start(Stage primaryStage)
@@ -52,6 +52,4 @@ public class GraphGUI extends Application
         primaryStage.setTitle("Arloper's Algorithm");
         primaryStage.show();
     }
-
-
 }
