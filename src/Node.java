@@ -6,7 +6,7 @@
  *
  * @author Arun Arjunakani
  * @version 1.0
- * @since 2016-11-1
+ * @since 2016-11-3
  */
 
 public class Node
@@ -34,8 +34,29 @@ public class Node
         //Declare variables
         this.x = x;
         this.y = y;
-        this.n1 = n1;
-        this.n2 = n2;
+
+        this.setN1(n1);
+        this.setN2(n2);
+    }
+
+    /**
+     * Returns the first neighbor
+     * @param null
+     * @return Node
+     */
+    public Node getN1()
+    {
+        return n1;
+    }
+
+    /**
+     * Returns the second neighbor
+     * @param null
+     * @return Node
+     */
+    public Node getN2()
+    {
+        return n2;
     }
 
     /**
@@ -80,13 +101,61 @@ public class Node
     }
 
     /**
+     * Changes the first neighbor
+     * @param Node, int
+     * @return null
+     */
+    public void setN1(Node n1)
+    {
+        if(n1 == null)
+        {
+            return;
+        }
+
+        if(n1.getN1() == null)
+        {
+            this.n1 = n1;
+            n1.n1 = this;
+        }
+        else if(n1.getN2() == null)
+        {
+            this.n1 = n1;
+            n1.n2 = this;
+        }
+    }
+
+    /**
+     * Changes the second neighbor
+     * @param Node, int
+     * @return null
+     */
+    public void setN2(Node n2)
+    {
+        if(n1 == null)
+        {
+            return;
+        }
+
+        if(n2.getN1() == null)
+        {
+            this.n2 = n2;
+            n2.n1 = this;
+        }
+        else if(n2.getN2() == null)
+        {
+            this.n2 = n2;
+            n2.n2 = this;
+        }
+    }
+
+    /**
      * This counts the number of neighbors with a handy 
      * @param null
      * @return int
      */
     public int numNeighbors()
     {
-        return this.n1 == null? this.n2 == null ? 0: 1: 2;
+        return this.n1 != null? this.n2 != null ? 2: 1: 0;
     }
     
     /** 
@@ -96,6 +165,28 @@ public class Node
      */
     public static double calculateDistance(Node n1, Node n2)
     {
-        return Math.sqrt((n1.getX - n2.getX)*(n1.getX - n2.getX) + (n1.getY - n2.getY)*(n1.getY - n2.getY));
+        return Math.sqrt((n1.getX() - n2.getX())*(n1.getX() - n2.getX()) + (n1.getY() - n2.getY())*(n1.getY() - n2.getY()));
+    }
+
+    @Override
+    public String toString() {
+        return "x: " + this.getX() + "\ny: " + this.getY() + "\nNeighbors: " + this.numNeighbors() + "\n";
+    }
+
+    /**
+     * This is the main method which runs the entire program.
+     * @param String[]
+     * @return null
+     */
+    public static void main(String[] args)
+    {
+        Node n1 = new Node(1,1);
+        Node n2 = new Node(2,2);
+        Node n3 = new Node(3,3);
+        n3.setN1(n1);
+        n3.setN2(n2);
+        System.out.println(n3);
+        System.out.println(n2);
+        System.out.println(n1);
     }
 }

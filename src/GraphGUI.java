@@ -3,7 +3,8 @@
  * the program.
  *
  * @author Arun Arjunakani
- * @version 2016, October 24
+ * @version 1.0
+ * @since 2016-11-3
  */
 
 import javafx.application.*;
@@ -40,10 +41,7 @@ public class GraphGUI extends Application
         Button btn = new Button("Hello");
         buttons.getChildren().add(btn);
         btn.setOnAction(event -> {
-            if(primaryStage.getScene() == scene)
-            {
-                System.out.println("We must switch!");
-            }
+            System.out.println(btn.getText() + " was pressed!");
         });
 
         main.getChildren().add(buttons);
