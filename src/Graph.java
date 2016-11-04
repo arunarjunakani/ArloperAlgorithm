@@ -1,3 +1,4 @@
+import java.utils.Arrays;
 /**
  * This class represents a graph. There are a few differences between this and a typical graph.
  * While this class has a set of nodes, it does not take into account the edges between the nodes
@@ -25,10 +26,21 @@ public class Graph
     /**
      * Calculating the distance of the graph if Arloper's Algorithm is used.
      * @param null
-     * @return null
+     * @return double
      */
-    public void calculateDistance()
+    public double calculateDistance()
     {
-
+        nodes = NodeSorter.sortByY(nodes);
+        Node[] topNodes = new Node[nodes.length/2];
+        Node[] bottomNodes = new Node[nodes.length - nodes.length/2];
+        for(int i = 0; i < topNodes.length; i++)
+        {
+            topNodes[i] = nodes[i];
+        }
+        
+        for(int i = 0; i < bottomNodes.length; i++)
+        {
+            topNodes[i] = nodes[i + nodes.length/2];
+        }
     }
 }
