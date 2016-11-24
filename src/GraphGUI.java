@@ -50,4 +50,9 @@ public class GraphGUI extends Application
         primaryStage.setTitle("Arloper's Algorithm");
         primaryStage.show();
     }
+
+    public void mainMenuGui()
+    {
+
+    }
 }
