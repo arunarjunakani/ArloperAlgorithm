@@ -55,6 +55,4 @@ public class GraphGUI extends Application
     {
 
     }
-
-    public void
 }

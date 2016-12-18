@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * This class represents a node. There are a few differences between this and a typical node
  * because of the unique nature of the Travelling Salesman Problem (TSP). For one, each node will
@@ -37,6 +39,112 @@ public class Node
 
         this.setN1(n1);
         this.setN2(n2);
+    }
+
+    public static void sortVertically(Node[] arr)
+    {
+        sortVertically(arr, 0, arr.length - 1);
+    }
+
+    /**
+     *
+     * @param Node[], int, int
+     * @return null
+     */
+    public static void sortVertically(Node[] arr, int low, int high)
+    {
+        if (arr == null || arr.length == 0)
+            return;
+
+        if (low >= high)
+            return;
+
+        // pick the pivot
+        int middle = low + (high - low) / 2;
+        double pivot = arr[middle].getY();
+
+        // make left < pivot and right > pivot
+        int i = low, j = high;
+        while (i <= j) {
+            while (arr[i].getY() < pivot) {
+                i++;
+            }
+
+            while (arr[j].getY() > pivot) {
+                j--;
+            }
+
+            if (i <= j) {
+                Node temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            }
+        }
+
+        // recursively sort two sub parts
+        if (low < j)
+        {
+            sortVertically(arr, low, j);
+        }
+
+        if (high > i) {
+            sortVertically(arr, i, high);
+        }
+    }
+
+    public static void sortHorizontally(Node[] arr)
+    {
+        sortHorizontally(arr, 0, arr.length - 1);
+    }
+
+    /**
+     *
+     * @param Node[], int, int
+     * @return null
+     */
+    public static void sortHorizontally(Node[] arr, int low, int high)
+    {
+        if (arr == null || arr.length == 0)
+            return;
+
+        if (low >= high)
+            return;
+
+        // pick the pivot
+        int middle = low + (high - low) / 2;
+        double pivot = arr[middle].getX();
+
+        // make left < pivot and right > pivot
+        int i = low, j = high;
+        while (i <= j) {
+            while (arr[i].getX() < pivot) {
+                i++;
+            }
+
+            while (arr[j].getX() > pivot) {
+                j--;
+            }
+
+            if (i <= j) {
+                Node temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            }
+        }
+
+        // recursively sort two sub parts
+        if (low < j)
+        {
+            sortVertically(arr, low, j);
+        }
+
+        if (high > i) {
+            sortVertically(arr, i, high);
+        }
     }
 
     /**
@@ -180,13 +288,10 @@ public class Node
      */
     public static void main(String[] args)
     {
-        Node n1 = new Node(1,1);
+        Node n1 = new Node(1,3);
         Node n2 = new Node(2,2);
-        Node n3 = new Node(3,3);
+        Node n3 = new Node(3,1);
         n3.setN1(n1);
         n3.setN2(n2);
-        System.out.println(n3);
-        System.out.println(n2);
-        System.out.println(n1);
     }
 }
