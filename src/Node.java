@@ -41,9 +41,9 @@ public class Node
         this.setN2(n2);
     }
 
-    public static void sortVertically(Node[] arr)
+    public static void sortY(Node[] arr)
     {
-        sortVertically(arr, 0, arr.length - 1);
+        sortY(arr, 0, arr.length - 1);
     }
 
     /**
@@ -51,7 +51,7 @@ public class Node
      * @param Node[], int, int
      * @return null
      */
-    public static void sortVertically(Node[] arr, int low, int high)
+    private static void sortY(Node[] arr, int low, int high)
     {
         if (arr == null || arr.length == 0)
             return;
@@ -86,17 +86,17 @@ public class Node
         // recursively sort two sub parts
         if (low < j)
         {
-            sortVertically(arr, low, j);
+            sortY(arr, low, j);
         }
 
         if (high > i) {
-            sortVertically(arr, i, high);
+            sortY(arr, i, high);
         }
     }
 
-    public static void sortHorizontally(Node[] arr)
+    public static void sortX(Node[] arr)
     {
-        sortHorizontally(arr, 0, arr.length - 1);
+        sortX(arr, 0, arr.length - 1);
     }
 
     /**
@@ -104,7 +104,7 @@ public class Node
      * @param Node[], int, int
      * @return null
      */
-    public static void sortHorizontally(Node[] arr, int low, int high)
+    private static void sortX(Node[] arr, int low, int high)
     {
         if (arr == null || arr.length == 0)
             return;
@@ -139,11 +139,11 @@ public class Node
         // recursively sort two sub parts
         if (low < j)
         {
-            sortVertically(arr, low, j);
+            sortX(arr, low, j);
         }
 
         if (high > i) {
-            sortVertically(arr, i, high);
+            sortX(arr, i, high);
         }
     }
 
