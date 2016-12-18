@@ -9,12 +9,20 @@
 
 import javafx.application.*;
 import javafx.scene.*;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 
+import java.util.ArrayList;
+
 public class GraphGUI extends Application
 {
+    ArrayList<Node> nodes;
+    Canvas canvas;
+    GraphicsContext gc;
+
     /**
      * This is the main method which runs the entire program.
      * @param String[]
@@ -34,9 +42,10 @@ public class GraphGUI extends Application
     @Override
     public void start(Stage primaryStage)
     {
+        nodes = new ArrayList<>();
         TilePane main = new TilePane();
+        Scene scene = new Scene(main, 800, 600);
 
-        Scene scene = new Scene(main, 1000, 700);
         VBox buttons = new VBox(8);
         Button btn = new Button("Hello");
         buttons.getChildren().add(btn);
@@ -44,6 +53,11 @@ public class GraphGUI extends Application
             System.out.println(btn.getText() + " was pressed!");
         });
 
+        canvas = new Canvas(600, 600);
+        gc = canvas.getGraphicsContext2D();
+        gc.strokeLine(40, 10, 10, 40);
+
+        //main.getChildren().add(canvas);
         main.getChildren().add(buttons);
         scene.getStylesheets().add("style.css");
         primaryStage.setScene(scene);
@@ -51,8 +65,14 @@ public class GraphGUI extends Application
         primaryStage.show();
     }
 
-    public void mainMenuGui()
-    {
+    public void drawGraph(){
+        Node[] nodeList = new Node[nodes.size()];
+        for(int i = 0; i < nodeList.length; i++)
+        {
+            nodeList[i] = nodes.get(i);
+        }
+
+        Graph g = new Graph(nodeList);
 
     }
 }

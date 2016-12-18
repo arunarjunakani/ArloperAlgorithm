@@ -41,13 +41,18 @@ public class Node
         this.setN2(n2);
     }
 
+    /**
+     * Uses quicksort to sort the nodes vertically
+     * @param Node[]
+     * @return null
+     */
     public static void sortY(Node[] arr)
     {
         sortY(arr, 0, arr.length - 1);
     }
 
     /**
-     *
+     * Uses quicksort to sort the nodes vertically over a range
      * @param Node[], int, int
      * @return null
      */
@@ -94,13 +99,18 @@ public class Node
         }
     }
 
+    /**
+     * Uses quicksort to sort the nodes horizontally
+     * @param Node[]
+     * @return null
+     */
     public static void sortX(Node[] arr)
     {
         sortX(arr, 0, arr.length - 1);
     }
 
     /**
-     *
+     * Uses quicksort to sort the nodes horizontally over a range
      * @param Node[], int, int
      * @return null
      */
@@ -278,7 +288,7 @@ public class Node
 
     @Override
     public String toString() {
-        return "x: " + this.getX() + "\ny: " + this.getY() + "\nNeighbors: " + this.numNeighbors() + "\n";
+        return "(" + this.getX() + ", " + this.getY() + ")";
     }
 
     /**
@@ -293,5 +303,6 @@ public class Node
         Node n3 = new Node(3,1);
         n3.setN1(n1);
         n3.setN2(n2);
+        System.out.println(n3);
     }
 }
