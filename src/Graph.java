@@ -111,15 +111,4 @@ public class Graph
     public Node[] getNodes() {
         return nodes;
     }
-
-    public static void main(String[] args)
-    {
-        Node n1 = new Node(1,1);
-        Node n2 = new Node(2,2);
-        Node n3 = new Node(1,2);
-
-
-        Graph g = new Graph(new Node[]{n1, n2, n3});
-        double distance = g.calculateDistance();
-    }
 }

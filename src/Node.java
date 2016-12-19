@@ -290,19 +290,4 @@ public class Node
     public String toString() {
         return "(" + this.getX() + ", " + this.getY() + ")";
     }
-
-    /**
-     * This is the main method which runs the entire program.
-     * @param String[]
-     * @return null
-     */
-    public static void main(String[] args)
-    {
-        Node n1 = new Node(1,3);
-        Node n2 = new Node(2,2);
-        Node n3 = new Node(3,1);
-        n3.setN1(n1);
-        n3.setN2(n2);
-        System.out.println(n3);
-    }
 }
