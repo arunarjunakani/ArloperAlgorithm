@@ -15,7 +15,7 @@ import java.util.Collections;
 
 public class Graph
 {
-    Node[] nodes;
+    private Node[] nodes;
 
     /**
      * Only constuctor
@@ -33,7 +33,19 @@ public class Graph
      */
     public double calculateDistance()
     {
+
         double distance = 0.0;
+
+        if(nodes == null || nodes.length <= 1)
+        {
+            return distance;
+        }
+
+        if(nodes.length == 2){
+            distance =  Node.calculateDistance(nodes[0], nodes[1]);
+            return distance;
+        }
+
         Node.sortY(nodes);
         //System.out.println(Arrays.toString(nodes));
 
@@ -58,10 +70,6 @@ public class Graph
                 topNodes[i] = nodes[i + nodes.length/2 + 1];
             }
         }
-
-
-        System.out.println(Arrays.toString(topNodes));
-        System.out.println(Arrays.toString(bottomNodes));
 
         //Sorts the arrays horizontally
         Node.sortX(topNodes);
@@ -96,8 +104,12 @@ public class Graph
             nodes[i] = sorted.get(i);
         }
 
-        System.out.println(distance);
+
         return distance;
+    }
+
+    public Node[] getNodes() {
+        return nodes;
     }
 
     public static void main(String[] args)
