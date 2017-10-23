@@ -6,7 +6,7 @@ This is the implementation of a simple heuristic algorithm for the [Travelling S
 * [Java](https://www.java.com/en/) - The language used
 * [JavaFX](http://docs.oracle.com/javase/8/javase-clienttechnologies.htm) - GUI
 
-## Authors
+## Author
 
 * **Arun Arjunakani** - [arunarjunakani](https://github.com/arunarjunakani)
 
