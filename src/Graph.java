@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * This class represents a graph. There are a few differences between this and a typical graph.
@@ -34,7 +35,7 @@ public class Graph {
 		}
 
 //		Node.sortY(nodes);
-		
+		Arrays.sort(nodes, Comparator.comparing(Node::getY));
 
 		//Splits the graph into top and bottom arrays and fills them
 		Node[] topNodes = new Node[nodes.length / 2];
@@ -54,8 +55,10 @@ public class Graph {
 			}
 		}
 
-		Node.sortX(topNodes);
-		Node.sortX(bottomNodes);
+//		Node.sortX(topNodes);
+//		Node.sortX(bottomNodes);
+		Arrays.sort(topNodes, Comparator.comparing(Node::getX));
+		Arrays.sort(bottomNodes, Comparator.comparing(Node::getX));
 
 		//Connects the nodes in each array and finds distance
 		for (int i = 1; i < topNodes.length; i++) {
