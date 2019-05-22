@@ -34,7 +34,6 @@ public class Graph {
 			return distance;
 		}
 
-//		Node.sortY(nodes);
 		Arrays.sort(nodes, Comparator.comparing(Node::getY));
 
 		//Splits the graph into top and bottom arrays and fills them
@@ -55,8 +54,6 @@ public class Graph {
 			}
 		}
 
-//		Node.sortX(topNodes);
-//		Node.sortX(bottomNodes);
 		Arrays.sort(topNodes, Comparator.comparing(Node::getX));
 		Arrays.sort(bottomNodes, Comparator.comparing(Node::getX));
 
