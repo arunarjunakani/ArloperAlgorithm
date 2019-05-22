@@ -13,102 +13,81 @@ import java.util.Collections;
  * @since 2016-11-3
  */
 
-public class Graph
-{
-    private Node[] nodes;
+public class Graph {
+	private Node[] nodes;
 
-    /**
-     * Only constuctor
-     */
-    public Graph(Node[] nodes)
-    {
-        this.nodes = nodes;
-    }
+	public Graph(Node[] nodes) {
+		this.nodes = nodes;
+	}
 
+	public double calculateDistance() {
 
-    /**
-     * Calculating the distance of the graph if Arloper's Algorithm is used.
-     * @param null
-     * @return double
-     */
-    public double calculateDistance()
-    {
+		double distance = 0.0;
 
-        double distance = 0.0;
+		if (nodes == null || nodes.length <= 1) {
+			return distance;
+		}
 
-        if(nodes == null || nodes.length <= 1)
-        {
-            return distance;
-        }
+		if (nodes.length == 2) {
+			distance = Node.calculateDistance(nodes[0], nodes[1]);
+			return distance;
+		}
 
-        if(nodes.length == 2){
-            distance =  Node.calculateDistance(nodes[0], nodes[1]);
-            return distance;
-        }
+//		Node.sortY(nodes);
+		
 
-        Node.sortY(nodes);
-        //System.out.println(Arrays.toString(nodes));
+		//Splits the graph into top and bottom arrays and fills them
+		Node[] topNodes = new Node[nodes.length / 2];
+		Node[] bottomNodes = new Node[nodes.length - nodes.length / 2];
 
-        //Splits the graph into top and bottom arrays and fills them
-        Node[] topNodes = new Node[nodes.length/2];
-        Node[] bottomNodes = new Node[nodes.length - nodes.length/2];
+		for (int i = 0; i < bottomNodes.length; i++) {
+			bottomNodes[i] = nodes[i];
+		}
 
-        for(int i = 0; i < bottomNodes.length; i++)
-        {
-            bottomNodes[i] = nodes[i];
-        }
+		if (nodes.length % 2 == 0) {
+			for (int i = 0; i < topNodes.length; i++) {
+				topNodes[i] = nodes[i + nodes.length / 2];
+			}
+		} else {
+			for (int i = 0; i < topNodes.length; i++) {
+				topNodes[i] = nodes[i + nodes.length / 2 + 1];
+			}
+		}
 
-        if(nodes.length % 2 == 0) {
-            for(int i = 0; i < topNodes.length; i++)
-            {
-                topNodes[i] = nodes[i + nodes.length/2];
-            }
-        }
-        else {
-            for(int i = 0; i < topNodes.length; i++)
-            {
-                topNodes[i] = nodes[i + nodes.length/2 + 1];
-            }
-        }
+		Node.sortX(topNodes);
+		Node.sortX(bottomNodes);
 
-        //Sorts the arrays horizontally
-        Node.sortX(topNodes);
-        Node.sortX(bottomNodes);
+		//Connects the nodes in each array and finds distance
+		for (int i = 1; i < topNodes.length; i++) {
+			topNodes[i].setN1(topNodes[i - 1]);
+			distance += Node.calculateDistance(topNodes[i], topNodes[i - 1]);
 
-        //Connects the nodes in each array and finds distance
-        for(int i = 1; i < topNodes.length; i++)
-        {
-            topNodes[i].setN1(topNodes[i-1]);
-            distance += Node.calculateDistance(topNodes[i], topNodes[i-1]);
+		}
+		for (int i = 1; i < bottomNodes.length; i++) {
+			bottomNodes[i].setN1(bottomNodes[i - 1]);
+			distance += Node.calculateDistance(bottomNodes[i], bottomNodes[i - 1]);
+		}
 
-        }
-        for(int i = 1; i < bottomNodes.length; i++)
-        {
-            bottomNodes[i].setN1(bottomNodes[i-1]);
-            distance += Node.calculateDistance(bottomNodes[i], bottomNodes[i-1]);
-        }
+		//Connects the two paths and finds distance
+		topNodes[0].setN2(bottomNodes[0]);
+		distance += Node.calculateDistance(topNodes[0], bottomNodes[0]);
 
-        //Connects the two paths and finds distance
-        topNodes[0].setN2(bottomNodes[0]);
-        distance += Node.calculateDistance(topNodes[0], bottomNodes[0]);
+		bottomNodes[bottomNodes.length - 1].setN2(topNodes[topNodes.length - 1]);
+		distance += Node.calculateDistance(bottomNodes[bottomNodes.length - 1], topNodes[topNodes.length - 1]);
 
-        bottomNodes[bottomNodes.length-1].setN2(topNodes[topNodes.length-1]);
-        distance += Node.calculateDistance(bottomNodes[bottomNodes.length-1], topNodes[topNodes.length-1]);
+		ArrayList<Node> sorted = new ArrayList<>(topNodes.length + bottomNodes.length);
+		Collections.addAll(sorted, topNodes);
+		Collections.addAll(sorted, bottomNodes);
 
-        ArrayList<Node> sorted = new ArrayList<>(topNodes.length + bottomNodes.length);
-        Collections.addAll(sorted, topNodes);
-        Collections.addAll(sorted, bottomNodes);
-
-        for(int i = 0; i < nodes.length; i++)
-        {
-            nodes[i] = sorted.get(i);
-        }
+		for (int i = 0; i < nodes.length; i++) {
+			nodes[i] = sorted.get(i);
+		}
 
 
-        return distance;
-    }
+		return distance;
+	}
 
-    public Node[] getNodes() {
-        return nodes;
-    }
+	public Node[] getNodes() {
+		return nodes;
+	}
 }
